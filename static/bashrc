@@ -1,0 +1,38 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+PS1='[\u@\h \W]\$ '
+
+# Fix Tilix problem
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+	source /etc/profile.d/vte.sh
+fi
+
+
+# Handy aliases
+alias la="ls -a"
+alias ll="ls -l"
+alias l="ls -hatrl"
+setxkbmap fi
+
+complete -c man which
+complete -cf sudo
+
+export HISTCONTROL=ignoredups
+source /usr/share/doc/pkgfile/command-not-found.bash
+
+shopt -s autocd
+shopt -s checkwinsize
+export PS2='>'
+
+# Customize prompt
+# \u = user \h = hostname \w = directory
+
+#export PS1='$(whoami) $(dirs) $ '
+
+export PS1='\[$(tput setaf 7)\]\u\[$(tput sgr0)\]@\[$(tput bold)$(tput setaf 1)\]\h\[$(tput sgr0)\] \w $ '

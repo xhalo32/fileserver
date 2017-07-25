@@ -1,0 +1,23 @@
+#!/bin/bash
+OPTIND=1
+quiet=false
+
+while getopts "h?q" opt; do
+	case "$opt" in
+		h|\?)
+			echo "prompt: prompt [-q]"
+			exit 1;;
+		q)  quiet=true;;
+	esac
+done
+
+shift $((OPTIND-1))
+[ "$1" = "--" ] && shift
+
+read -p "(Y/n) " confirm
+if [ "$quiet" = true ]; then
+	[[ $confirm == [yY] ]] && exit 0 || exit 1
+else
+	[[ $confirm == [yY] ]] && echo 0 || echo 1
+fi
+

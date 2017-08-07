@@ -1,0 +1,23 @@
+#!/usr/bin/python3
+
+import i3, subprocess
+
+
+outputs=i3.get_outputs()
+workspaces=[]
+
+for out in outputs:
+	if out['active']:
+		workspaces.insert(0,out['current_workspace'])
+
+displays=subprocess.check_output("xrandr |grep -w connected |cut -d ' ' -f 1",stderr=subprocess.STDOUT,shell=True).decode("utf-8").strip().split("\n")
+NUMDISPLAYS=len(displays)
+
+print(displays, NUMDISPLAYS, workspaces)
+
+for i in range(1,11):
+	i3.workspace(str(i))
+	i3.command('move','workspace to output '+displays[(i+1)%NUMDISPLAYS])
+
+for workspace in workspaces:
+	i3.workspace(workspace)

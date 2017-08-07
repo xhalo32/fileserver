@@ -1,0 +1,72 @@
+theme = "solarized-dark"
+icons = "awesome"
+
+[[block]]
+block = "temperature"
+
+#[[block]]
+#block = "music"
+#max_width = 21
+#marquee = false
+#player = "spotify"
+#buttons = ["play", "next"]
+
+[[block]]
+block = "load"
+interval = 1
+format = "{1m} {5m} {15m}"
+
+[[block]]
+block = "cpu"
+interval = 0.7
+
+[[block]]
+block = "memory"
+interval = 5
+info_type = "memory"
+format_mem = "{Mup}%"
+format_swap = "{SUp}%"
+
+[[block]]
+block = "disk_space"
+path = "/"
+alias = "/"
+info_type = "available"
+unit = "GB"
+interval = 20
+
+#[[block]]
+#block = "disk_space"
+#path = "/home/potato"
+#alias = "~"
+#info_type = "available"
+#unit = "GB"
+#interval = 20
+
+[[block]]
+block = "battery"
+device = 1
+
+[[block]]
+block = "sound"
+
+[[block]]
+block = "net"
+interval = 0.5
+
+[[block]]
+block = "time"
+interval = 1
+format = "%a %d/%m %H:%M.%S"
+
+[[block]]
+block = "custom"
+interval = 5
+command = "echo '\uF010'"
+on_click = "bash /home/potato/togglepad.sh"
+
+#[[block]]
+#block = "custom"
+#interval = 999999
+#command = "echo '\uF011'"
+#on_click = "i3-nagbar -t warning -m 'Power menu:' -b 'Shutdown' 'poweroff' -b 'Hibernate' 'systemctl hibernate' -b 'Suspend' 'suspend_system.sh' -b 'Reboot' 'reboot'"
